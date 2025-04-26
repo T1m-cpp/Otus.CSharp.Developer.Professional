@@ -12,7 +12,7 @@ VALUES
        (1, '2025-04-25', 'Awaiting Payment'),
        (2, CURRENT_TIMESTAMP, 'Pending'),
        (3, '2025-04-21', 'Shipped'),
-       (3, '2025-04-22', 'Shipped'),
+       (3, '2025-04-22', 'Shipped');
        
 INSERT INTO OrderDetails (orderid, productid, quantity, totalcost)
 VALUES     
