@@ -1,6 +1,6 @@
 # Для работы с postgres использовал docker-образы postgres и adminer.  
 * Для запуска контейнеров выполнить команду `docker compose up`, база данных VirtualStore создается автоматически при первом запуске
-* Подключиться к adminer по адресу http://localhost:8080/ используя логин pgadmin и пароль 123
+* Подключиться к adminer по адресу http://localhost:8080/, используя логин pgadmin и пароль 123
 ![alt text](https://github.com/T1m-cpp/Otus.C-.Developer.Professional/blob/main/ДЗ2/img/login.png)  
 * Выполнить cкрипты из CreationScripts.sql, в результате чего создадутся нужные таблицы 
 ![alt text](https://github.com/T1m-cpp/Otus.C-.Developer.Professional/blob/main/ДЗ2/img/CreationScripts.png)
