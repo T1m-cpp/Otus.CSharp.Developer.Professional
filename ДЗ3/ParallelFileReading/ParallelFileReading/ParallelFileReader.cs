@@ -1,28 +1,42 @@
 ﻿public class ParallelFileReader
 {
-    public static int ReadThreeFiles()
+    //Метод параллельного считывания файлов с заданным количеством тасок
+    public static int ReadFiles(string directoryPath, int workersCount = 3)
     {
-        RandomFileGenerator.ClearFilesFolder();
-        RandomFileGenerator.GenerateRandomFiles(3, 100, 1000);
-
-        var tasks = new List<Task<int>>();
-
-        string directoryPath = Path.Combine(AppContext.BaseDirectory, "files");
+        var tasks = new Task<int>[workersCount];
 
         var files = Directory.GetFiles(directoryPath);
+        int totalFiles = files.Length;
+        int filesPerWorker = totalFiles / workersCount;
+        int extra = totalFiles % workersCount; // остаток
 
-        foreach (var file in files)
+        int fileIndex = 0;
+        for (int i = 0; i < workersCount; i++)
         {
-            Console.WriteLine(file);
+            int count = filesPerWorker + (i < extra ? 1 : 0); // первые extra воркеров получат по 1 доп. файлу
+            int start = fileIndex;
+            int end = start + count;
+
+            tasks[i] = Task.Run(() =>
+            {
+                int spaces = 0;
+                for (int j = start; j < end; j++)
+                {
+                    spaces += CountSpacesInFile(files[j]);
+                }
+                return spaces;
+            });
+
+            fileIndex = end;
         }
-        //for (int i = 0; i < 3; i++) {
-        //    tasks.Add(Task.Run(() => CountSpacesInFile(filePath));
 
+        Task.WaitAll(tasks);
 
+        return tasks.Sum(t => t.Result);
 
-        //}
-        return 1;
     }
+
+    //Метод подсчета пробелов в файле
     public static int CountSpacesInFile(string filePath)
     {
         string content = File.ReadAllText(filePath);

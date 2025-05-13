@@ -1,7 +1,32 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using System.Diagnostics;
 
-RandomFileGenerator.GenerateRandomFiles(3, 100, 1000);
-ParallelFileReader.ReadThreeFiles();
+string directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "files");
 
-//RandomFileGenerator.ClearFilesFolder();
+RandomFileGenerator.ClearFilesFolder(directoryPath);
+//Генерируем 3 файла со случайными символами длиной от 10000 до 100000 символов
+RandomFileGenerator.GenerateRandomFiles("files", 3, 10000, 100000);
+
+int workersCount = 3;
+
+var timer = new Stopwatch();
+timer.Start();
+int count = ParallelFileReader.ReadFiles("files", workersCount);
+timer.Stop();
+Console.WriteLine($"Время обработки 3-х файлов: {timer.Elapsed}");
+Console.WriteLine($"Прочитанные файлы содержат {count} пробелов.");
+
+timer.Reset();
+
+//Очищаем папку с файлами
+RandomFileGenerator.ClearFilesFolder(directoryPath);
+//Генерируем тестовые файлы
+RandomFileGenerator.GenerateRandomFiles("files", 20, 1000, 100000);
+
+workersCount = Environment.ProcessorCount; //Получаем кол-во потоков нашего процессора
+
+timer.Start();
+count = ParallelFileReader.ReadFiles("files", workersCount);
+timer.Stop();
+Console.WriteLine($"Время обработки всех файлов в папке: {timer.Elapsed}");
+Console.WriteLine($"Прочитанные файлы содержат {count} пробелов.");
+RandomFileGenerator.ClearFilesFolder(directoryPath);
