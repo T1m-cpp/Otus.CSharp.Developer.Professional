@@ -25,4 +25,5 @@
 | 10_000_000           | 2,334.83 мкс     | 1,302.84 мкс            | 1,609.31 мкс|
 
 Более информативный вывод результатов представлен на скриншоте ниже  
+
 ![alt text](https://github.com/T1m-cpp/Otus.CSharp.Developer.Professional/blob/main/ДЗ4/img/result.png) 
