@@ -5,7 +5,7 @@ using MultithreadedProject;
 
 [MemoryDiagnoser]
 [RankColumn]
-[SimpleJob(RuntimeMoniker.Net80)] // Явно указываем .NET 8.0
+[SimpleJob(RuntimeMoniker.Net80)]
 public class SumBenchmark
 {
     private int[] _data;
