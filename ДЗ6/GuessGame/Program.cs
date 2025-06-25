@@ -19,7 +19,7 @@ namespace GuessGame
                 .BuildServiceProvider();
 
             // Получение экземпляра игры через DI-контейнер
-            var game = serviceProvider.GetService<GuessTheNumber>();
+            var game = serviceProvider.GetService<IGame>();
             if (game == null)
             {
                 Console.WriteLine("Ошибка: не удалось получить экземпляр игры из DI-контейнера.");
