@@ -1,0 +1,5 @@
+﻿{
+  "MinValue": 25,
+  "MaxValue": 250,
+  "MaxAttempts": 20
+}
