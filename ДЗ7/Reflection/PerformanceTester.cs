@@ -34,7 +34,7 @@ namespace Reflection
 
             // Вывод в консоль и замер времени
             stopwatch.Restart();
-            Console.WriteLine($"CSV: {csvResult}");
+            Console.WriteLine($"Полученная строка (CSV): {csvResult}");
             var consoleOutputTime = stopwatch.ElapsedMilliseconds;
 
             // Рефлексия - Десериализация
@@ -65,14 +65,14 @@ namespace Reflection
             var jsonDeserializeTime = stopwatch.ElapsedMilliseconds;
 
             // Вывод результатов
-            Console.WriteLine($"\nРезультаты ({iterationsCount} итераций):");
+            Console.WriteLine($"Результаты ({iterationsCount} итераций):");
             Console.WriteLine($"Моя рефлексия:");
             Console.WriteLine($"Время на сериализацию = {reflectionSerializeTime} мс");
             Console.WriteLine($"Время на десериализацию = {reflectionDeserializeTime} мс");
             Console.WriteLine($"Время на вывод в консоль = {consoleOutputTime} мс");
             Console.WriteLine($"System.Text.Json:");
             Console.WriteLine($"Время на сериализацию = {jsonSerializeTime} мс");
-            Console.WriteLine($"Время на десериализацию = {jsonDeserializeTime} мс");
+            Console.WriteLine($"Время на десериализацию = {jsonDeserializeTime} мс\n");
         }
     }
 
